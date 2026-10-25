@@ -1,0 +1,460 @@
+
+
+1. GATE CSE — 1994 — Q3.11
+Topic: Data Independence | Type: MCQ/True-False
+Which statement is correct regarding logical and physical data independence?
+A. Logical data independence is easier to achieve than physical data independence
+B. Physical data independence is easier to achieve than logical data independence
+C. Both are equally difficult to achieve
+D. Neither can be achieved in a DBMS
+Answer: B 
+
+2. UGC NET CSE — December 2006 — Part II — Q18
+Topic: Data Independence | Type: MCQ
+Which statement regarding data independence is false?
+A. Hierarchical databases suffer from data dependence
+B. Network databases suffer from data dependence
+C. Relational databases provide only logical data independence
+D. Relational databases provide only physical data independence
+Answer: C 
+
+3. GATE CSE — 2026 — Set 2 — Q5
+Topic: Three-Schema Architecture | Marks: 1 | Type: MCQ
+Which matching between DBMS schema levels and their representations is correct?
+A. Logical–Views, Physical–Relations, External–File organization
+B. Logical–File organization, Physical–Views, External–Relations
+C. Logical–Relations, Physical–File organization and indexes, External–Views
+D. Logical–Views, Physical–Indexes, External–Relations
+Answer: C 
+
+4. GATE CSE — 2026 — Set 2
+Topic: Dense and Sparse Indexing | Marks: 1 | Type: MCQ
+Consider:
+S1: A hash index must be dense.
+S2: A B+ tree index can be sparse.
+A. Both S1 and S2 are true
+B. Both S1 and S2 are false
+C. S1 is true and S2 is false
+D. S1 is false and S2 is true
+Answer: A 
+
+5. GATE CSE — 2024 — Set 1 — Q1
+Topic: B+ Tree | Marks: 1 | Type: MCQ
+In a B+ tree, the minimum occupancy requirement is relaxed for:
+A. Only the root
+B. All leaf nodes
+C. All internal nodes
+D. Only the leftmost leaf
+Answer: A 
+
+6. GATE CSE — 2024 — Set 2 — Q1
+Topic: File Organization | Marks: 1 | Type: MSQ
+Which file organizations are efficient for a sequential scan?
+A. Sorted
+B. Heap
+C. Unclustered tree index
+D. Unclustered hash index
+Answer: A, B 
+
+7. GATE CSE — 2023
+Topic: Primary Index / File Organization | Type: NAT
+A fixed-length ordered file contains 25,000 records. Each record is 100 bytes, the primary key occupies 15 bytes, the block size is 1024 bytes, and a block pointer occupies 5 bytes. A primary index is stored as an ordered file and binary search is used.
+What is the worst-case number of block accesses required to identify the data block containing a given key?
+A. 4
+B. 5
+C. 6
+D. 7
+Answer: C 
+
+8. GATE CSE — 2021 — Set 2
+Topic: Index File | Type: NAT
+A database contains 1,50,000 student records. The block size is 4096 bytes. Each index entry contains a 12-byte key and a 7-byte record pointer. Records cannot cross block boundaries.
+How many blocks are required for the index file?
+A. 500
+B. 694
+C. 750
+D. 1000
+Answer: B 
+
+9. GATE CSE — 2021 — Set 1
+Topic: File-System Directory | Marks: 1 | Type: MSQ
+For a directory implemented as a linear list, which operations necessarily require scanning the directory to locate an existing entry?
+A. Renaming an existing file
+B. Opening an existing file
+C. Deleting an existing file
+D. Creating a new file
+Answer: A, B, C 
+
+10. GATE CSE — 2015 — Set 1
+Topic: Clustered Index | Marks: 1 | Type: MCQ
+An index is called clustered when:
+A. The index contains only primary-key values
+B. The data records follow approximately the ordering of the index entries
+C. Every record has exactly one index entry
+D. The index is always implemented using hashing
+Answer: B 
+
+11. GATE CSE — 2008
+Topic: Clustering Index | Marks: 1 | Type: MCQ
+A clustering index is normally defined on a field that is:
+A. Non-key and ordering
+B. Key and non-ordering
+C. Key and ordering
+D. Non-key and non-ordering
+Answer: A 
+
+12. GATE CSE — 2008
+Topic: Multilevel Index | Marks: 2 | Type: MCQ
+A secondary multilevel index is constructed over a file with fixed-size records and a specified block size. Which factor primarily determines the number of index blocks at each level?
+A. Number of attributes in the relation
+B. Number of index entries fitting in a block
+C. Number of transactions
+D. Number of external schemas
+Answer: B 
+
+13. GATE CSE — 2019
+Topic: B+ Tree | Marks: 1 | Type: MCQ
+Which statement about a B+ tree is incorrect?
+A. All leaves are at the same depth
+B. Leaf nodes can be linked
+C. Internal nodes contain pointers to the actual data records
+D. Search keys occur in the tree in sorted order
+Answer: C 
+
+14. GATE CSE — 2016 — Set 2
+Topic: B+ Tree | Marks: 1 | Type: MCQ
+A B+ tree is called balanced because:
+A. Every node contains the same number of keys
+B. Every leaf occurs at the same depth
+C. Every internal node has the same number of children
+D. The root contains every search key
+Answer: B 
+
+15. GATE CSE — 2010
+Topic: B+ Tree Occupancy | Marks: 1 | Type: MCQ
+A B+ tree node can contain at most five keys. Ignoring the root exception, the minimum number of keys in a node under the half-full rule is:
+A. 1
+B. 2
+C. 3
+D. 4
+Answer: B 
+
+16. GATE CSE — 2008
+Topic: Secondary Index | Type: MCQ
+A secondary index on a non-ordering field of a file is generally:
+A. Sparse
+B. Dense
+C. Always clustered
+D. Without pointers
+Answer: B 
+
+17. GATE CSE — 2000
+Topic: B+ Tree | Type: MCQ
+Why are B+ trees suitable for database indexing?
+A. They eliminate disk access
+B. Their high fan-out keeps the tree height small
+C. They do not require ordered keys
+D. They store the complete database in the root
+Answer: B 
+
+18. GATE CSE — 2024 — Set 1
+Topic: Functional Dependency | Marks: 2 | Type: MSQ
+Given functional dependencies:
+XY → ZW 
+W → Y 
+X → Y 
+Y → Z 
+Which implication is necessarily true?
+A. X → ZW
+B. XY → Z
+C. XW → Z
+D. X → W
+Answer: A, B, C 
+
+19. GATE CSE — 2024 — Set 1
+Topic: 1NF | Marks: 1 | Type: MSQ
+Which statements about a relation in first normal form are true?
+A. It can have a composite key
+B. It cannot have a foreign key
+C. It cannot contain a composite attribute
+D. It cannot have more than one candidate key
+Answer: A, C 
+
+20. GATE CSE — 2023
+Topic: Relational Model | Marks: 1 | Type: MCQ
+The degree (arity) of a relation refers to:
+A. Number of attributes
+B. Number of tuples
+C. Number of distinct values
+D. Number of candidate keys
+Answer: A 
+
+21. GATE CSE — 2022
+Topic: BCNF | Marks: 1 | Type: MCQ
+Which statement is true?
+A. Every relation with two attributes is in BCNF
+B. If all attributes are prime, BCNF is guaranteed
+C. Every relation has a non-prime attribute
+D. Every BCNF decomposition preserves all functional dependencies
+Answer: A 
+
+22. GATE CSE — 2023
+Topic: Primary Index | Type: NAT
+An ordered data file contains fixed-size records and a primary index. A binary search is performed on the index blocks. Which search technique is appropriate?
+A. Linear search
+B. Binary search
+C. Hash search
+D. Depth-first search
+Answer: B 
+
+23. GATE CSE — 2024 — Set 2
+Topic: File Organization | Marks: 1 | Type: MSQ
+Which of the following can provide efficient I/O for scanning an entire DBMS relation?
+A. Heap organization
+B. Sorted organization
+C. Unclustered tree index
+D. Unclustered hash index
+Answer: A, B 
+
+24. GATE CSE — 2021 — Set 2
+Topic: Indexing | Type: NAT
+An index contains entries consisting of a 12-byte search key and a 7-byte pointer. With a 4096-byte block and 1,50,000 records, what is the number of blocks required when index entries cannot span blocks?
+A. 500
+B. 694
+C. 800
+D. 1000
+Answer: B 
+
+25. GATE CSE — 2015 — Set 1
+Topic: Clustered Index | Type: MCQ
+Which property distinguishes a clustered index?
+A. Data records are ordered according to the indexed field
+B. Every indexed field must be a candidate key
+C. It can only be implemented using hashing
+D. It cannot contain duplicate search-key values
+Answer: A 
+
+26. GATE CSE — 2024 — Set 1
+Topic: B+ Tree | Marks: 1 | Type: MCQ
+If a non-root B+ tree node must be at least 50% occupied, which node is exempt from this requirement?
+A. Root
+B. Leftmost leaf
+C. Rightmost leaf
+D. All internal nodes
+Answer: A 
+
+27. GATE CSE — 2019
+Topic: B+ Tree | Type: MCQ
+Which statement about B+ tree structure is correct?
+A. Only the root is balanced
+B. All leaves occur at the same level
+C. Internal nodes must contain actual data records
+D. Leaf nodes cannot be connected
+Answer: B 
+
+28. GATE CSE — 2008
+Topic: Clustering Index | Type: MCQ
+A clustering index is normally built on:
+A. An ordering non-key field
+B. A non-ordering candidate key
+C. A random attribute
+D. A foreign key only
+Answer: A 
+
+29. GATE CSE — 2023
+Topic: Ordered File / Primary Index | Type: NAT
+A block-aligned ordered file is indexed using a primary index. If binary search is performed on the index blocks, the number of accesses depends primarily on:
+A. Number of external schemas
+B. Number of index blocks
+C. Number of relations
+D. Number of candidate keys
+Answer: B 
+
+30. GATE CSE — 2021 — Set 1
+Topic: File-System Indexing | Type: MSQ
+For a linear-list directory implementation, which operation requires locating an existing entry?
+A. Rename an existing file
+B. Open an existing file
+C. Delete an existing file
+D. Create a new file
+Answer: A, B, C 
+
+31. ISRO CSE — 2018
+Topic: Logical Data Independence | Type: MCQ
+Immunity of external schemas or application programs to changes in the conceptual schema is called:
+A. Physical data independence
+B. Logical data independence
+C. Storage independence
+D. View redundancy
+Answer: B 
+
+32. SPPU / Pune University — 2018 — December
+Topic: Three-Level Architecture / Data Independence | Paper: DBMS | Type: MCQ-adapted PYQ
+Which DBMS architecture is primarily associated with achieving data independence?
+A. Single-level architecture
+B. Two-level architecture
+C. Three-level architecture
+D. Distributed architecture
+Answer: C 
+
+33. VTU — 2016 — May
+Topic: Three-Schema Architecture / Data Independence | Type: MCQ-adapted PYQ
+The three-schema architecture is primarily used to:
+A. Eliminate all redundancy
+B. Separate logical and physical descriptions of data
+C. Eliminate SQL
+D. Replace the DBMS with a file system
+Answer: B 
+
+34. Mumbai University — 2013 — December
+Topic: Data Independence | Type: MCQ-adapted PYQ
+Which of the following is a type of data independence?
+A. Logical
+B. Physical
+C. Both A and B
+D. Neither A nor B
+Answer: C 
+
+35. Mumbai University — 2014 — December
+Topic: Data Independence | Type: MCQ-adapted PYQ
+Which of the following terms was included as a DBMS concept in the 2014 examination?
+A. Data independence
+B. Pixel independence
+C. Process independence
+D. Network independence
+Answer: A 
+
+36. Mumbai University — 2016 — May
+Topic: Data Independence | Type: MCQ-adapted PYQ
+Which of the following was explicitly included among DBMS terminology questions?
+A. Data independence
+B. Compiler independence
+C. Hardware independence
+D. Language independence
+Answer: A 
+
+37. Mumbai University — 2016 — December
+Topic: Data Independence | Type: MCQ-adapted PYQ
+Data independence belongs primarily to which area?
+A. DBMS architecture
+B. Operating-system scheduling
+C. Compiler optimization
+D. Computer networking
+Answer: A 
+
+38. Mumbai University — 2017 — December
+Topic: Data Independence / DBMS Architecture | Type: MCQ-adapted PYQ
+The overall DBMS architecture and data independence are primarily associated with:
+A. Schema-level abstraction
+B. CPU scheduling
+C. Network routing
+D. Memory paging
+Answer: A 
+
+39. Mumbai University — 2018 — December
+Topic: Data Independence | Type: MCQ-adapted PYQ
+Which concept was directly asked as a DBMS theory question in the December 2018 paper?
+A. Data independence
+B. Virtual memory
+C. Process synchronization
+D. Deadlock avoidance
+Answer: A 
+
+40. Mumbai University — 2018 — May
+Topic: Data Independence | Type: MCQ-adapted PYQ
+Which of the following was explicitly included among DBMS terms for explanation?
+A. Weak entity set
+B. Data independence
+C. Extended ER features
+D. All of the above
+Answer: D 
+
+41. Mumbai University — 2017 — December
+Topic: DBMS Architecture | Type: MCQ-adapted PYQ
+The overall architecture of a DBMS is generally represented using:
+A. Schema levels
+B. CPU pipelines
+C. Network layers only
+D. Programming-language tokens
+Answer: A 
+
+42. SPPU / Pune University — 2018 — December
+Topic: Three-Level Architecture | Type: MCQ-adapted PYQ
+Which level of DBMS architecture represents user-specific views?
+A. Internal level
+B. Conceptual level
+C. External level
+D. Physical storage level
+Answer: C 
+
+43. SPPU / Pune University — 2018 — December
+Topic: Three-Level Architecture | Type: MCQ-adapted PYQ
+Which level represents the overall logical structure of a database?
+A. External
+B. Conceptual
+C. Internal
+D. Application
+Answer: B 
+
+44. SPPU / Pune University — 2018 — December
+Topic: Three-Level Architecture | Type: MCQ-adapted PYQ
+Which level is concerned with the physical representation of stored data?
+A. External
+B. Conceptual
+C. Internal
+D. View
+Answer: C 
+
+45. IGNOU — 2020 — December
+Topic: DBMS Architecture / Data Independence | Type: MCQ-adapted PYQ
+The three-level architecture helps achieve data independence by separating:
+A. Applications, transactions and users
+B. External views, conceptual schema and internal schema
+C. Tables, rows and columns only
+D. SQL, PL/SQL and Java
+Answer: B
+
+46. VTU — 2016 — May
+Topic: Logical vs Physical Data Independence | Type: MCQ-adapted PYQ
+Which pair correctly represents the two major types of data independence?
+A. Logical and physical
+B. External and internal
+C. Structural and procedural
+D. Static and dynamic
+Answer: A 
+
+47. Mumbai University — 2013 — December
+Topic: Data Independence | Type: MCQ-adapted PYQ
+Which statement best describes data independence?
+A. Ability to modify a schema level without unnecessarily affecting higher-level schemas
+B. Ability to eliminate all database constraints
+C. Ability to store data without a schema
+D. Ability to execute SQL without a DBMS
+Answer: A 
+
+48. GATE CSE — 1994 — Q3.11
+Topic: Physical Data Independence | Type: MCQ/True-False
+Physical data independence means that changes to physical storage should not require rewriting application programs.
+A. True
+B. False
+C. True only for hierarchical databases
+D. True only for network databases
+Answer: A 
+
+49. GATE CSE — 2026 — Set 2
+Topic: Schema Levels | Marks: 1 | Type: MCQ
+Which of the following is associated with the external schema?
+A. File organization
+B. Indexes
+C. Views
+D. Storage blocks
+Answer: C 
+
+50. GATE CSE — 2026 — Set 2
+Topic: Schema Levels / Physical Organization | Marks: 1 | Type: MCQ
+Which of the following is associated with the physical schema?
+A. Views
+B. Relations
+C. File organization and indexes
+D. User-specific reports
+Answer: C

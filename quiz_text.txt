@@ -1,0 +1,352 @@
+
+
+Q1. What is data independence?
+A. Ability to store data without a database
+B. Ability to change one schema level without significantly affecting higher levels
+C. Ability to delete database records
+D. Ability to access a database without SQL
+Answer: B
+Q2. How many major types of data independence are there?
+A. One
+B. Two
+C. Three
+D. Four
+Answer: B
+Q3. The two types of data independence are:
+A. External and internal
+B. Logical and physical
+C. Structural and functional
+D. Static and dynamic
+Answer: B
+Q4. Which architecture is closely associated with data independence?
+A. Two-tier architecture
+B. Three-schema architecture
+C. Client-server architecture
+D. Peer-to-peer architecture
+Answer: B
+Q5. The three levels of the ANSI/SPARC architecture are:
+A. User, Application, Database
+B. External, Conceptual, Internal
+C. Physical, Logical, Network
+D. Input, Processing, Output
+Answer: B
+Q6. Which schema represents individual user views?
+A. Internal schema
+B. Conceptual schema
+C. External schema
+D. Physical schema
+Answer: C
+Q7. Which schema describes the overall logical structure of the database?
+A. External
+B. Conceptual
+C. Internal
+D. Storage
+Answer: B
+Q8. Which schema describes how data is physically stored?
+A. External
+B. Conceptual
+C. Internal
+D. User
+Answer: C
+Q9. Changing file organization without changing the conceptual schema demonstrates:
+A. Logical data independence
+B. Physical data independence
+C. Referential integrity
+D. Normalization
+Answer: B
+Q10. Changing the conceptual schema without requiring changes to external views demonstrates:
+A. Physical data independence
+B. Logical data independence
+C. Physical security
+D. Data redundancy
+Answer: B
+Q11. Which type of data independence is generally concerned with changes to storage structures?
+A. Logical
+B. Physical
+C. External
+D. Conceptual
+Answer: B
+Q12. Which type is concerned with changes to the logical structure of the database?
+A. Physical data independence
+B. Logical data independence
+C. Storage independence
+D. View independence
+Answer: B
+Q13. A user's view of the database belongs to which level?
+A. External
+B. Conceptual
+C. Internal
+D. Physical
+Answer: A
+Q14. A table such as STUDENT(StudentID, Name, GPA) primarily represents the:
+A. External level
+B. Conceptual level
+C. Internal level
+D. Hardware level
+Answer: B
+Q15. Disk blocks, indexes, and file organizations are primarily associated with:
+A. External schema
+B. Conceptual schema
+C. Internal schema
+D. User schema
+Answer: C
+Q16. Which change is most clearly a physical-level change?
+A. Adding a new table
+B. Renaming a column
+C. Creating a B+ tree index
+D. Adding an attribute to a relation
+Answer: C
+Q17. Which change is most clearly a logical-level change?
+A. Changing from HDD to SSD
+B. Creating a B+ tree index
+C. Adding a column to a relation
+D. Changing the page size
+Answer: C
+Q18. Data independence primarily reduces the dependency between:
+A. Users and passwords
+B. Different levels of database abstraction
+C. CPU and memory
+D. Tables and SQL keywords
+Answer: B
+Q19. Which mapping connects the external schema to the conceptual schema?
+A. External-conceptual mapping
+B. Conceptual-internal mapping
+C. Physical-external mapping
+D. User-storage mapping
+Answer: A
+Q20. Which mapping connects the conceptual schema to the internal schema?
+A. External mapping
+B. Conceptual-internal mapping
+C. User mapping
+D. View mapping
+Answer: B
+Q21. A DBMS changes a heap file to a B+ tree-based storage structure. The application programs remain unchanged. This demonstrates:
+A. Logical data independence
+B. Physical data independence
+C. Logical dependency
+D. Referential integrity
+Answer: B
+Q22. A database administrator adds an index to improve query performance. Which schema is primarily affected?
+A. External
+B. Conceptual
+C. Internal
+D. External and conceptual only
+Answer: C
+Q23. A new attribute Email is added to the STUDENT relation, but existing user views do not use it. This can demonstrate:
+A. Physical data independence
+B. Logical data independence
+C. No data independence
+D. Transaction independence
+Answer: B
+Q24. A table column Course is renamed to Program, while an existing user view continues to display Course. What allows this?
+A. Physical mapping
+B. External-conceptual mapping
+C. Conceptual-internal mapping only
+D. Transaction management
+Answer: B
+Q25. Which change would normally NOT require changes to application programs if physical data independence is maintained?
+A. Changing a file organization
+B. Removing a required logical attribute
+C. Changing the logical relationship between tables
+D. Changing a user's view
+Answer: A
+Q26. Which change would normally be associated with logical data independence?
+A. Changing disk storage
+B. Adding an index
+C. Changing the conceptual schema while preserving external views
+D. Changing page size
+Answer: C
+Q27. Which of the following is an example of a physical schema change?
+A. Add Phone to STUDENT
+B. Rename STUDENT to LEARNER
+C. Change heap storage to hash organization
+D. Add a new user view
+Answer: C
+Q28. Which is an example of a logical schema change?
+A. Change disk block size
+B. Create a B+ tree index
+C. Add a new attribute to a relation
+D. Move database files to another disk
+Answer: C
+Q29. Why is physical data independence generally easier to achieve?
+A. Physical changes usually do not alter the logical meaning of data
+B. Physical changes always require application modifications
+C. Logical schemas are stored directly on disk
+D. External views are unnecessary
+Answer: A
+Q30. Which of the following is the correct direction of abstraction?
+A. Internal → Conceptual → External
+B. External → Internal → Conceptual
+C. Conceptual → External → Internal
+D. External → Conceptual → Internal
+Answer: D
+Q31. An application accesses a view rather than directly accessing physical storage. Which principle does this support?
+A. Data independence
+B. Data duplication
+C. Data inconsistency
+D. Data fragmentation
+Answer: A
+Q32. A DBA changes the indexing technique from a primary index to a B+ tree index. Which level is primarily changed?
+A. External
+B. Conceptual
+C. Internal
+D. User
+Answer: C
+Q33. A DBA changes the storage method from sequential file organization to hash file organization. Assuming the logical schema remains unchanged, what is demonstrated?
+A. Logical data independence
+B. Physical data independence
+C. Referential integrity
+D. Normalization
+Answer: B
+Q34. A DBA changes the conceptual schema by adding Department, but existing applications continue to work because they do not use the new attribute. This is an example of:
+A. Physical independence
+B. Logical independence
+C. No independence
+D. Transaction isolation
+Answer: B
+Q35. Which component hides physical storage details from the conceptual schema?
+A. Conceptual-internal mapping
+B. External-conceptual mapping
+C. SQL parser
+D. Query optimizer only
+Answer: A
+Q36. Which component hides conceptual database changes from external users when possible?
+A. External-conceptual mapping
+B. Conceptual-internal mapping
+C. Storage manager
+D. Buffer manager
+Answer: A
+Q37. Suppose a database uses:
+External View → STUDENT → B+ Tree
+If STUDENT remains unchanged but B+ Tree is replaced by Hash storage, which levels remain unchanged?
+A. Only External
+B. Only Conceptual
+C. External and Conceptual
+D. None
+Answer: C
+Q38. Suppose a new logical attribute is added but is not included in any existing external view. Which level changes?
+A. Only external
+B. Only conceptual
+C. Conceptual and external necessarily
+D. Only internal
+Answer: B
+Q39. Which scenario would most likely break logical data independence?
+A. Changing an index
+B. Changing a file organization
+C. Removing an attribute that an existing external view depends upon
+D. Changing storage hardware
+Answer: C
+Q40. Which statement best describes the purpose of schema mappings?
+A. They eliminate the need for databases
+B. They translate requests between different schema levels
+C. They encrypt all database records
+D. They remove database constraints
+Answer: B
+Q41. Consider:
+External: StudentID, Name, GPA
+Logical: StudentID, Name, GPA, Email
+Physical: B+ Tree storage
+If the physical organization changes from B+ Tree to Hash while the logical schema remains unchanged, which statements are correct?
+A. External schema changes
+B. Logical schema changes
+C. Physical schema changes
+D. Application views must necessarily change
+Answer: C
+
+Q42. Consider an external view:
+StudentView(StudentID, Name, GPA)
+The conceptual schema changes from:
+STUDENT(StudentID, Name, GPA)
+to:
+STUDENT(StudentID, FirstName, LastName, GPA)
+The DBMS maintains the old view by constructing Name from FirstName and LastName.
+What does this demonstrate?
+A. Physical data independence
+B. Logical data independence
+C. Physical storage optimization
+D. Transaction isolation
+Answer: B
+
+Q43. A database changes its physical storage from:
+Heap → Sequential → B+ Tree
+while applications continue using the same relations and views.
+How many schema levels are directly affected by these storage changes?
+A. One
+B. Two
+C. Three
+D. None
+Answer: A
+Explanation: The physical/internal level changes while the conceptual and external levels can remain unchanged.
+
+Q44. Consider:
+External View: StudentID, Name, GPA
+Logical Table: StudentID, Name, GPA, Email
+If Email is removed from the logical table, what happens to the existing external view?
+A. It is necessarily affected
+B. It is unaffected because it never used Email
+C. The physical schema must change
+D. All database applications must stop
+Answer: B
+
+Q45. Consider:
+External View: StudentID, Name, GPA
+Logical Table: StudentID, Name, GPA
+If GPA is removed from the logical schema, what is the likely consequence?
+A. The external view can remain unchanged automatically
+B. The external view is affected because it depends on GPA
+C. Only the physical schema changes
+D. No schema changes occur
+Answer: B
+
+Q46. Which situation represents the strongest example of physical data independence?
+A. Adding a new attribute to a relation
+B. Splitting one relation into two relations
+C. Changing heap storage to a B+ tree without changing applications
+D. Changing a user's view
+Answer: C
+
+Q47. Which situation represents the strongest example of logical data independence?
+A. Changing disk blocks
+B. Adding an index
+C. Changing the conceptual representation while preserving existing external views
+D. Changing the storage device
+Answer: C
+
+Q48. Consider the following chain:
+External → Conceptual → Internal
+A change occurs at the Internal level. Assuming proper data independence, which levels should remain unaffected?
+A. Only External
+B. Only Conceptual
+C. External and Conceptual
+D. None
+Answer: C
+
+Q49. Consider the following change:
+STUDENT(StudentID, Name, Course, GPA)
+becomes:
+STUDENT(StudentID, Name, Program, GPA)
+where Course is renamed to Program.
+An existing external view still requests Course. The DBMS maintains a mapping between the old external name and the new logical attribute.
+Which concept is being demonstrated?
+A. Physical data independence
+B. Logical data independence
+C. Physical indexing
+D. Transaction atomicity
+Answer: B
+
+Q50. A DBMS has the following architecture:
+External Schema
+↓
+External–Conceptual Mapping
+↓
+Conceptual Schema
+↓
+Conceptual–Internal Mapping
+↓
+Internal Schema
+The database administrator changes the internal schema from a heap file to a hash file. Which is the most accurate result?
+A. The external schema must change
+B. The conceptual schema must change
+C. The internal schema changes while higher schema levels can remain unchanged
+D. All application programs must be rewritten
+Answer: C
