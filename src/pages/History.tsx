@@ -516,12 +516,14 @@ const SimulationHistoryView: React.FC = () => {
 // ─── Practice History View ─────────────────────────────────────────────────────
 
 const PracticeHistoryView: React.FC = () => {
-  const [history, setHistory] = useState<PracticeAttempt[]>([])
-
-  React.useEffect(() => {
-    const data = JSON.parse(localStorage.getItem('practiceHistory') || '[]')
-    setHistory(data.reverse())
-  }, [])
+  const [history] = useState<PracticeAttempt[]>(() => {
+    try {
+      const data = JSON.parse(localStorage.getItem('practiceHistory') || '[]')
+      return Array.isArray(data) ? [...data].reverse() : []
+    } catch {
+      return []
+    }
+  })
 
   if (history.length === 0) {
     return (

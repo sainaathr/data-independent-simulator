@@ -58,9 +58,14 @@ export default function CompetitiveExam() {
       incorrect,
       topics
     }
-    const history = JSON.parse(localStorage.getItem('practiceHistory') || '[]')
-    history.push(attempt)
-    localStorage.setItem('practiceHistory', JSON.stringify(history))
+    try {
+      const history = JSON.parse(localStorage.getItem('practiceHistory') || '[]')
+      const historyArray = Array.isArray(history) ? history : []
+      historyArray.push(attempt)
+      localStorage.setItem('practiceHistory', JSON.stringify(historyArray))
+    } catch {
+      localStorage.setItem('practiceHistory', JSON.stringify([attempt]))
+    }
   }
 
   if (state === 'playing') {
