@@ -58,14 +58,9 @@ export default function CompetitiveExam() {
       incorrect,
       topics
     }
-    try {
-      const history = JSON.parse(localStorage.getItem('practiceHistory') || '[]')
-      const historyArray = Array.isArray(history) ? history : []
-      historyArray.push(attempt)
-      localStorage.setItem('practiceHistory', JSON.stringify(historyArray))
-    } catch {
-      localStorage.setItem('practiceHistory', JSON.stringify([attempt]))
-    }
+    const history = JSON.parse(localStorage.getItem('practiceHistory') || '[]')
+    history.push(attempt)
+    localStorage.setItem('practiceHistory', JSON.stringify(history))
   }
 
   if (state === 'playing') {
@@ -101,8 +96,8 @@ export default function CompetitiveExam() {
                 onClick={() => setExamFilter(exam)}
                 className={`px-4 py-2 rounded-xl border text-sm font-medium transition-all ${
                   examFilter === exam 
-                    ? 'border-indigo-500 bg-indigo-200 dark:bg-indigo-500/20 text-indigo-100' 
-                    : 'border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 hover:border-slate-500'
+                    ? 'border-indigo-500 bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-200' 
+                    : 'border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-400 hover:border-slate-400 dark:hover:border-slate-500'
                 }`}
               >
                 {exam}
@@ -120,8 +115,8 @@ export default function CompetitiveExam() {
                 onClick={() => setDiffFilter(level)}
                 className={`px-4 py-2 rounded-xl border text-sm font-medium transition-all ${
                   diffFilter === level 
-                    ? 'border-emerald-500 bg-emerald-500/20 text-emerald-100' 
-                    : 'border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 hover:border-slate-500'
+                    ? 'border-emerald-500 bg-emerald-100 dark:bg-emerald-500/20 text-emerald-800 dark:text-emerald-200' 
+                    : 'border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-400 hover:border-slate-400 dark:hover:border-slate-500'
                 }`}
               >
                 {level.charAt(0).toUpperCase() + level.slice(1)}
@@ -144,8 +139,8 @@ export default function CompetitiveExam() {
                 className={`py-3 rounded-xl border font-medium transition-all ${
                   num > maxAvailable ? 'opacity-50 cursor-not-allowed border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-600' :
                   count === num 
-                    ? 'border-violet-500 bg-violet-200 dark:bg-violet-500/20 text-violet-100' 
-                    : 'border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 hover:border-slate-500'
+                    ? 'border-violet-500 bg-violet-100 dark:bg-violet-500/20 text-violet-800 dark:text-violet-200' 
+                    : 'border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-400 hover:border-slate-400 dark:hover:border-slate-500'
                 }`}
               >
                 {num}
@@ -157,7 +152,7 @@ export default function CompetitiveExam() {
         <button
           onClick={handleStart}
           disabled={maxAvailable === 0 || count > maxAvailable}
-          className="w-full py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-slate-900 dark:text-white font-bold transition-colors disabled:bg-slate-200 dark:bg-slate-700 disabled:text-slate-500"
+          className="w-full py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold transition-colors disabled:bg-slate-300 dark:disabled:bg-slate-700 disabled:text-slate-500 cursor-pointer disabled:cursor-not-allowed shadow-sm"
         >
           {maxAvailable === 0 ? 'No Questions Available' : 'Start Practice'}
         </button>

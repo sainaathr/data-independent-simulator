@@ -123,7 +123,7 @@ export const SimulationResultPanel: React.FC<SimulationResultPanelProps> = ({ re
         {result.diff && (
           <div className="p-3 rounded-xl bg-white/60 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800/80 text-xs text-slate-700 dark:text-slate-300 flex items-center justify-between">
             <span className="font-semibold text-slate-600 dark:text-slate-400">Target Schema Diff:</span>
-            <span className="font-mono text-indigo-300">{result.diff.description}</span>
+            <span className="font-mono text-indigo-700 dark:text-indigo-300">{result.diff.description}</span>
           </div>
         )}
       </CardContent>

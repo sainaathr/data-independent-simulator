@@ -43,14 +43,9 @@ export default function Quizzes() {
       incorrect,
       topics
     }
-    try {
-      const history = JSON.parse(localStorage.getItem('practiceHistory') || '[]')
-      const historyArray = Array.isArray(history) ? history : []
-      historyArray.push(attempt)
-      localStorage.setItem('practiceHistory', JSON.stringify(historyArray))
-    } catch {
-      localStorage.setItem('practiceHistory', JSON.stringify([attempt]))
-    }
+    const history = JSON.parse(localStorage.getItem('practiceHistory') || '[]')
+    history.push(attempt)
+    localStorage.setItem('practiceHistory', JSON.stringify(history))
   }
 
   if (state === 'playing') {
@@ -85,8 +80,8 @@ export default function Quizzes() {
                 onClick={() => setDifficulty(level)}
                 className={`py-3 rounded-xl border font-medium transition-all ${
                   difficulty === level 
-                    ? 'border-indigo-500 bg-indigo-200 dark:bg-indigo-500/20 text-indigo-100' 
-                    : 'border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 hover:border-slate-500'
+                    ? 'border-indigo-500 bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-200' 
+                    : 'border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-400 hover:border-slate-400 dark:hover:border-slate-500'
                 }`}
               >
                 {level.charAt(0).toUpperCase() + level.slice(1)}
@@ -109,8 +104,8 @@ export default function Quizzes() {
                 className={`py-3 rounded-xl border font-medium transition-all ${
                   num > maxAvailable ? 'opacity-50 cursor-not-allowed border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-600' :
                   count === num 
-                    ? 'border-emerald-500 bg-emerald-500/20 text-emerald-100' 
-                    : 'border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 hover:border-slate-500'
+                    ? 'border-emerald-500 bg-emerald-100 dark:bg-emerald-500/20 text-emerald-800 dark:text-emerald-200' 
+                    : 'border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-400 hover:border-slate-400 dark:hover:border-slate-500'
                 }`}
               >
                 {num}
@@ -122,7 +117,7 @@ export default function Quizzes() {
         <button
           onClick={handleStart}
           disabled={count > maxAvailable}
-          className="w-full py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-slate-900 dark:text-white font-bold transition-colors disabled:bg-slate-200 dark:bg-slate-700 disabled:text-slate-500"
+          className="w-full py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold transition-colors disabled:bg-slate-300 dark:disabled:bg-slate-700 disabled:text-slate-500 cursor-pointer disabled:cursor-not-allowed shadow-sm"
         >
           Start Quiz
         </button>

@@ -32,7 +32,7 @@ export const INITIAL_PHYSICAL_SCHEMA: PhysicalSchema = {
 
 export const ALLOWED_ADD_COLUMNS = [
   'email', 'phone', 'department', 'semester', 'age',
-  'gender', 'date_of_birth', 'address', 'city', 'fees_status'
+  'gender', 'date_of_birth', 'address', 'city', 'enrollment_date', 'fees_status'
 ] as const
 
 export function formatStorageMethod(method: StorageMethod): string {
@@ -244,6 +244,21 @@ export function evaluatePhysicalChange(
     ],
     timestamp: Date.now(),
     diff,
+    processingSteps: [
+      `1. User selected Physical Data Independence simulation.`,
+      `2. Storage method target set to "${formatStorageMethod(newStorageMethod)}" with index structure "${formatIndexType(newIndexType)}".`,
+      `3. Physical Schema recalculated: page allocation updated to ${calculatedPages} pages for ${currentState.physicalSchema.records} records.`,
+      `4. Conceptual / Logical Schema inspected: Table STUDENT columns (${currentState.logicalSchema.columns.join(', ')}) remained intact.`,
+      `5. External Schema verified: Student View (${currentState.externalSchema.fields.join(', ')}) requires zero modification.`,
+      `6. DBMS Conceptual-to-Internal mapping updated to route queries through new access paths.`,
+      `7. Final Result: Physical Data Independence MAINTAINED transparently.`,
+    ],
+    intermediateState: [
+      { step: 'Initial Physical State', detail: `Layout: ${formatStorageMethod(currentState.physicalSchema.storageMethod)}, Index: ${formatIndexType(currentState.physicalSchema.indexType)}, Pages: ${currentState.physicalSchema.pages}` },
+      { step: 'Access Path Transition', detail: `Altering file organization to ${formatStorageMethod(newStorageMethod)} and rebuilding ${formatIndexType(newIndexType)}` },
+      { step: 'Storage Allocation', detail: `Recalculated page footprints: ${calculatedPages} physical pages allocated` },
+      { step: 'Schema Mapping Verification', detail: `Logical schema and External view schemas confirmed 100% stable` },
+    ],
   }
 
   return { updatedPhysical, result }
@@ -412,6 +427,83 @@ export function evaluateLogicalChange(
     pages: nextPages,
   }
 
+  let processingSteps: string[] = []
+  let intermediateState: { step: string; detail: string }[] = []
+
+  if (operation === 'add') {
+    const colToAdd = (columnName || 'email').trim().toLowerCase()
+    processingSteps = [
+      `1. User selected Logical Data Independence simulation (ADD column).`,
+      `2. Target attribute "${colToAdd}" checked against table STUDENT catalog definition.`,
+      `3. Logical Schema updated: column list expanded from ${currentColumns.length} to ${nextColumns.length} attributes.`,
+      `4. Physical Schema adapted: tuple width expanded, pages increased to ${nextPages}.`,
+      `5. External Schema verified: Student View projects (${currentState.externalSchema.fields.join(', ')}) and ignores unprojected attribute.`,
+      `6. DBMS External-to-Conceptual mapping maintained without view modification.`,
+      `7. Final Result: Logical Data Independence MAINTAINED via view insulation.`,
+    ]
+    intermediateState = [
+      { step: 'Pre-alteration Logical Schema', detail: `Table STUDENT had ${currentColumns.length} columns: ${currentColumns.join(', ')}` },
+      { step: 'Catalog Alteration', detail: `Registered new attribute "${colToAdd}" in data dictionary` },
+      { step: 'Physical Storage Adaptation', detail: `Tuple record slots widened; pages updated to ${nextPages}` },
+      { step: 'View Isolation Verification', detail: `External view mapping safely insulates queries from newly added attribute` },
+    ]
+  } else if (operation === 'remove') {
+    const colToRemove = (columnName || 'email').trim().toLowerCase()
+    const affectsExternalView = isColumnInExternalView(colToRemove)
+    if (affectsExternalView) {
+      processingSteps = [
+        `1. User selected Logical Data Independence simulation (REMOVE column).`,
+        `2. Target attribute "${colToRemove}" selected for deletion from relation STUDENT.`,
+        `3. Logical Schema updated: column dropped from relation STUDENT.`,
+        `4. Physical Schema updated: tuple width reduced, pages adjusted to ${nextPages}.`,
+        `5. External Schema evaluated: "${colToRemove}" was directly referenced by Student View!`,
+        `6. Boundary Condition Triggered: External-to-Conceptual mapping broken; application queries fail.`,
+        `7. Final Result: Logical Data Independence AFFECTED (View dependency broken).`,
+      ]
+      intermediateState = [
+        { step: 'Pre-alteration Logical Schema', detail: `Table STUDENT had ${currentColumns.length} columns: ${currentColumns.join(', ')}` },
+        { step: 'Catalog Deletion', detail: `Dropped attribute "${colToRemove}" from data dictionary` },
+        { step: 'Physical Storage Compaction', detail: `Reduced tuple storage footprint; pages updated to ${nextPages}` },
+        { step: 'External Impact Detection', detail: `Field was projected in external view; view definition required modification` },
+      ]
+    } else {
+      processingSteps = [
+        `1. User selected Logical Data Independence simulation (REMOVE column).`,
+        `2. Target attribute "${colToRemove}" selected for deletion from relation STUDENT.`,
+        `3. Logical Schema updated: unprojected column removed from relation STUDENT.`,
+        `4. Physical Schema updated: tuple width reduced, pages adjusted to ${nextPages}.`,
+        `5. External Schema evaluated: Student View never requested "${colToRemove}", so queries continue unaffected.`,
+        `6. DBMS External-to-Conceptual mapping remains 100% valid.`,
+        `7. Final Result: Logical Data Independence MAINTAINED.`,
+      ]
+      intermediateState = [
+        { step: 'Pre-alteration Logical Schema', detail: `Table STUDENT had ${currentColumns.length} columns: ${currentColumns.join(', ')}` },
+        { step: 'Catalog Deletion', detail: `Dropped unprojected attribute "${colToRemove}"` },
+        { step: 'Physical Storage Compaction', detail: `Reduced tuple storage footprint; pages updated to ${nextPages}` },
+        { step: 'View Isolation Verification', detail: `External view unaffected because attribute was not projected` },
+      ]
+    }
+  } else {
+    // rename
+    const oldName = (columnName || 'course').trim().toLowerCase()
+    const targetName = (newColumnName || `${oldName}_renamed`).trim().toLowerCase()
+    processingSteps = [
+      `1. User selected Logical Data Independence simulation (RENAME column).`,
+      `2. Target attribute "${oldName}" mapped to new conceptual identifier "${targetName}".`,
+      `3. Logical Schema updated: column renamed in table STUDENT catalog.`,
+      `4. DBMS External-to-Conceptual view mapping updated with alias (${oldName} AS ${targetName}).`,
+      `5. External applications continue querying original name without rewriting code.`,
+      `6. Physical storage untouched (same tuple offsets and record pages: ${nextPages}).`,
+      `7. Final Result: Logical Data Independence MAINTAINED via view aliasing.`,
+    ]
+    intermediateState = [
+      { step: 'Pre-alteration Logical Schema', detail: `Attribute "${oldName}" existed in table STUDENT` },
+      { step: 'Catalog Rename', detail: `Updated conceptual descriptor to "${targetName}"` },
+      { step: 'View Mapping Update', detail: `DBMS created alias mapping: External(${oldName}) -> Conceptual(${targetName})` },
+      { step: 'Application Transparency', detail: `External client queries execute without modification` },
+    ]
+  }
+
   const result: SimulationResult = {
     externalImpact,
     logicalImpact,
@@ -424,6 +516,8 @@ export function evaluateLogicalChange(
     whyPoints,
     timestamp: Date.now(),
     diff,
+    processingSteps,
+    intermediateState,
   }
 
   return { updatedLogical, updatedExternal, updatedPhysical, result }

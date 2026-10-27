@@ -46,8 +46,8 @@ export const SchemaLevelCard: React.FC<SchemaLevelCardProps> = ({
       icon: <Monitor className="w-4 h-4 text-sky-400" />,
       iconBg: 'bg-sky-500/10 border-sky-500/20 text-sky-400',
       activeBorder: isChanged
-        ? 'border-amber-500/50 bg-amber-950/20 shadow-lg shadow-amber-950/20 ring-1 ring-amber-500/30'
-        : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 hover:border-slate-300 dark:hover:border-slate-300 dark:border-slate-700',
+        ? 'border-amber-400 dark:border-amber-500/50 bg-amber-50/70 dark:bg-amber-950/20 shadow-lg shadow-amber-950/10 ring-1 ring-amber-400/30 dark:ring-amber-500/30'
+        : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 hover:border-slate-300 dark:hover:border-slate-700',
     },
     logical: {
       badge: 'Level 2 • Conceptual Schema',
@@ -56,8 +56,8 @@ export const SchemaLevelCard: React.FC<SchemaLevelCardProps> = ({
       icon: <Table className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />,
       iconBg: 'bg-indigo-100 dark:bg-indigo-500/10 border-indigo-200 dark:border-indigo-500/20 text-indigo-600 dark:text-indigo-400',
       activeBorder: isChanged
-        ? 'border-indigo-500/50 bg-indigo-950/25 shadow-lg shadow-indigo-950/20 ring-1 ring-indigo-500/30'
-        : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 hover:border-slate-300 dark:hover:border-slate-300 dark:border-slate-700',
+        ? 'border-indigo-400 dark:border-indigo-500/50 bg-indigo-50/70 dark:bg-indigo-950/25 shadow-lg shadow-indigo-950/10 ring-1 ring-indigo-400/30 dark:ring-indigo-500/30'
+        : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 hover:border-slate-300 dark:hover:border-slate-700',
     },
     physical: {
       badge: 'Level 3 • Internal Storage Architecture',
@@ -66,8 +66,8 @@ export const SchemaLevelCard: React.FC<SchemaLevelCardProps> = ({
       icon: <Server className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />,
       iconBg: 'bg-emerald-100 dark:bg-emerald-500/10 border-emerald-200 dark:border-emerald-500/20 text-emerald-600 dark:text-emerald-400',
       activeBorder: isChanged
-        ? 'border-emerald-500/50 bg-emerald-950/20 shadow-lg shadow-emerald-950/20 ring-1 ring-emerald-500/30'
-        : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 hover:border-slate-300 dark:hover:border-slate-300 dark:border-slate-700',
+        ? 'border-emerald-400 dark:border-emerald-500/50 bg-emerald-50/70 dark:bg-emerald-950/20 shadow-lg shadow-emerald-950/10 ring-1 ring-emerald-400/30 dark:ring-emerald-500/30'
+        : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 hover:border-slate-300 dark:hover:border-slate-700',
     },
   }[level]
 
@@ -123,9 +123,9 @@ export const SchemaLevelCard: React.FC<SchemaLevelCardProps> = ({
               {externalData.fields.map((field) => (
                 <span
                   key={field}
-                  className="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-mono text-sky-300 flex items-center gap-1.5 shadow-sm"
+                  className="px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs font-mono text-sky-700 dark:text-sky-300 flex items-center gap-1.5 shadow-sm"
                 >
-                  <CheckCircle2 className="w-3.5 h-3.5 text-sky-400" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-sky-500 dark:text-sky-400" />
                   <span>{field}</span>
                 </span>
               ))}
@@ -154,11 +154,11 @@ export const SchemaLevelCard: React.FC<SchemaLevelCardProps> = ({
                 const isAdded = diff?.added?.includes(col)
                 const isRenamed = diff?.renamed?.some((r) => r.to === col)
 
-                let chipStyle = 'bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-indigo-300'
+                let chipStyle = 'bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-indigo-700 dark:text-indigo-300'
                 if (isAdded) {
-                  chipStyle = 'bg-emerald-950/40 border-emerald-500/50 text-emerald-300 ring-1 ring-emerald-500/30'
+                  chipStyle = 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-500/50 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-500/30'
                 } else if (isRenamed) {
-                  chipStyle = 'bg-indigo-950/40 border-indigo-500/50 text-indigo-200 ring-1 ring-indigo-500/30'
+                  chipStyle = 'bg-indigo-50 dark:bg-indigo-950/40 border-indigo-300 dark:border-indigo-500/50 text-indigo-700 dark:text-indigo-200 ring-1 ring-indigo-500/30'
                 }
 
                 return (
@@ -167,13 +167,13 @@ export const SchemaLevelCard: React.FC<SchemaLevelCardProps> = ({
                     className={`px-3 py-1.5 rounded-lg border text-xs font-mono flex items-center gap-1.5 transition-all ${chipStyle}`}
                   >
                     {isPk ? (
-                      <span className="text-[9px] bg-indigo-200 dark:bg-indigo-500/20 text-indigo-300 px-1 py-0.2 rounded font-bold uppercase tracking-wider">
+                      <span className="text-[9px] bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 px-1 py-0.2 rounded font-bold uppercase tracking-wider">
                         PK
                       </span>
                     ) : isAdded ? (
                       <Sparkles className="w-3 h-3 text-emerald-600 dark:text-emerald-400 animate-pulse" />
                     ) : (
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-600" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600" />
                     )}
 
                     <span>{col}</span>
@@ -203,14 +203,14 @@ export const SchemaLevelCard: React.FC<SchemaLevelCardProps> = ({
               <div
                 className={`p-2.5 rounded-xl border transition-all ${
                   diff?.propertyChanges?.some((p) => p.label === 'Storage Method')
-                    ? 'bg-emerald-950/30 border-emerald-500/40 ring-1 ring-emerald-500/30'
-                    : 'bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800'
+                    ? 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-300 dark:border-emerald-500/40 ring-1 ring-emerald-500/30'
+                    : 'bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800'
                 }`}
               >
                 <span className="text-[10px] uppercase font-semibold text-slate-500 block">
                   Storage Layout
                 </span>
-                <span className="text-xs font-bold text-emerald-300">
+                <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300">
                   {formatStorageMethod(physicalData.storageMethod)}
                 </span>
               </div>
@@ -219,20 +219,20 @@ export const SchemaLevelCard: React.FC<SchemaLevelCardProps> = ({
               <div
                 className={`p-2.5 rounded-xl border transition-all ${
                   diff?.propertyChanges?.some((p) => p.label === 'Index Structure')
-                    ? 'bg-emerald-950/30 border-emerald-500/40 ring-1 ring-emerald-500/30'
-                    : 'bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800'
+                    ? 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-300 dark:border-emerald-500/40 ring-1 ring-emerald-500/30'
+                    : 'bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800'
                 }`}
               >
                 <span className="text-[10px] uppercase font-semibold text-slate-500 block">
                   Index Structure
                 </span>
-                <span className="text-xs font-bold text-emerald-300">
+                <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300">
                   {formatIndexType(physicalData.indexType)}
                 </span>
               </div>
 
               {/* Pages */}
-              <div className="p-2.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+              <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
                 <span className="text-[10px] uppercase font-semibold text-slate-500 block">
                   Allocated Pages
                 </span>
@@ -242,7 +242,7 @@ export const SchemaLevelCard: React.FC<SchemaLevelCardProps> = ({
               </div>
 
               {/* Records */}
-              <div className="p-2.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+              <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
                 <span className="text-[10px] uppercase font-semibold text-slate-500 block">
                   Total Records
                 </span>
@@ -254,17 +254,17 @@ export const SchemaLevelCard: React.FC<SchemaLevelCardProps> = ({
 
             {/* Visual property diff if physical level was modified */}
             {diff?.propertyChanges && diff.propertyChanges.length > 0 && (
-              <div className="p-2.5 rounded-xl bg-white dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 flex flex-wrap items-center gap-3 text-xs text-slate-600 dark:text-slate-400">
+              <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 flex flex-wrap items-center gap-3 text-xs text-slate-600 dark:text-slate-400">
                 <span className="font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                   <Sparkles className="w-3.5 h-3.5" />
                   Physical Transition:
                 </span>
                 {diff.propertyChanges.map((change) => (
-                  <span key={change.label} className="inline-flex items-center gap-1.5 bg-slate-50 dark:bg-slate-900 px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-800">
+                  <span key={change.label} className="inline-flex items-center gap-1.5 bg-white dark:bg-slate-900 px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-800">
                     <span className="text-slate-500">{change.label}:</span>
                     <span className="line-through text-slate-500">{change.from}</span>
                     <ArrowRight className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
-                    <span className="font-semibold text-emerald-300">{change.to}</span>
+                    <span className="font-semibold text-emerald-700 dark:text-emerald-300">{change.to}</span>
                   </span>
                 ))}
               </div>

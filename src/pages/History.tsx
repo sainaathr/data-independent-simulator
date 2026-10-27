@@ -16,6 +16,8 @@ import {
   ChevronDown,
   ChevronRight,
   Play,
+  FileDown,
+  FileText,
 } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/Card'
 import { Badge } from '../components/ui/Badge'
@@ -24,6 +26,12 @@ import { useSimulation } from '../context/useSimulation'
 import type { HistoryEntry } from '../types/simulation'
 import { formatStorageMethod, formatIndexType } from '../lib/simulationEngine'
 import { BrainCircuit } from 'lucide-react'
+import {
+  buildReportData,
+  downloadPdfReport,
+  downloadDocxReport,
+  downloadTxtReport,
+} from '../lib/reportGenerator'
 
 // ─── Practice History Types ────────────────────────────────────────────────────
 interface PracticeAttempt {
@@ -102,7 +110,7 @@ function exportCSV(entries: HistoryEntry[]) {
 
 // ─── History Entry Row ─────────────────────────────────────────────────────────
 
-const HistoryRow: React.FC<{ entry: HistoryEntry; index: number }> = ({ entry, index }) => {
+const HistoryRow: React.FC<{ entry: HistoryEntry; index?: number }> = ({ entry }) => {
   const [open, setOpen] = useState(false)
   const isMaintained = entry.result.independenceStatus === 'MAINTAINED'
   const isPhysical = entry.change.type === 'physical'
@@ -253,8 +261,45 @@ const HistoryRow: React.FC<{ entry: HistoryEntry; index: number }> = ({ entry, i
             ))}
           </div>
 
-          {/* Run index label */}
-          <p className="text-[11px] text-slate-600 text-right">Run #{index + 1} — ID: {entry.id}</p>
+          {/* Run report export & index label */}
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-200 dark:border-slate-800">
+            <div className="flex flex-wrap items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                icon={<Download className="w-3.5 h-3.5 text-indigo-500" />}
+                onClick={() => {
+                  const rep = buildReportData({ simState: entry.snapshotAfter as any, historyEntry: entry })
+                  if (rep) downloadPdfReport(rep)
+                }}
+              >
+                PDF Report
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                icon={<FileText className="w-3.5 h-3.5 text-blue-500" />}
+                onClick={async () => {
+                  const rep = buildReportData({ simState: entry.snapshotAfter as any, historyEntry: entry })
+                  if (rep) await downloadDocxReport(rep)
+                }}
+              >
+                Word (DOCX)
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                icon={<FileText className="w-3.5 h-3.5 text-slate-500" />}
+                onClick={() => {
+                  const rep = buildReportData({ simState: entry.snapshotAfter as any, historyEntry: entry })
+                  if (rep) downloadTxtReport(rep)
+                }}
+              >
+                TXT Report
+              </Button>
+            </div>
+            <p className="text-[11px] text-slate-500">Run #{entry.runIndex} &bull; ID: {entry.id}</p>
+          </div>
         </div>
       )}
     </div>
@@ -318,35 +363,46 @@ const SimulationHistoryView: React.FC = () => {
           </p>
         </div>
 
-        {totalRuns > 0 && (
-          <div className="flex items-center gap-2 shrink-0">
-            <Button
-              variant="outline"
-              size="sm"
-              icon={<Download className="w-4 h-4" />}
-              onClick={() => exportJSON(history)}
-            >
-              JSON
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              icon={<Download className="w-4 h-4" />}
-              onClick={() => exportCSV(history)}
-            >
-              CSV
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              icon={<Trash2 className="w-4 h-4 text-rose-600 dark:text-rose-400" />}
-              onClick={clearHistory}
-              className="text-rose-600 dark:text-rose-400 hover:text-rose-300"
-            >
-              Clear
-            </Button>
-          </div>
-        )}
+        <div className="flex flex-wrap items-center gap-2 shrink-0">
+          <Button
+            variant="primary"
+            size="sm"
+            icon={<FileDown className="w-4 h-4 fill-white" />}
+            onClick={() => navigate('/report')}
+          >
+            Download Report
+          </Button>
+
+          {totalRuns > 0 && (
+            <>
+              <Button
+                variant="outline"
+                size="sm"
+                icon={<Download className="w-4 h-4" />}
+                onClick={() => exportJSON(history)}
+              >
+                JSON
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                icon={<Download className="w-4 h-4" />}
+                onClick={() => exportCSV(history)}
+              >
+                CSV
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                icon={<Trash2 className="w-4 h-4 text-rose-600 dark:text-rose-400" />}
+                onClick={clearHistory}
+                className="text-rose-600 dark:text-rose-400 hover:text-rose-300"
+              >
+                Clear
+              </Button>
+            </>
+          )}
+        </div>
       </div>
 
       {/* Stats row */}
@@ -375,10 +431,10 @@ const SimulationHistoryView: React.FC = () => {
               <button
                 key={f}
                 onClick={() => setFilterType(f)}
-                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all cursor-pointer ${
                   filterType === f
-                    ? 'bg-indigo-600 text-slate-900 dark:text-white shadow'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-900 dark:text-white'
+                    ? 'bg-indigo-600 text-white shadow'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
                 {f.charAt(0).toUpperCase() + f.slice(1)}
@@ -392,10 +448,10 @@ const SimulationHistoryView: React.FC = () => {
               <button
                 key={s}
                 onClick={() => setFilterStatus(s)}
-                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all cursor-pointer ${
                   filterStatus === s
-                    ? 'bg-indigo-600 text-slate-900 dark:text-white shadow'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-900 dark:text-white'
+                    ? 'bg-indigo-600 text-white shadow'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
                 {s.charAt(0).toUpperCase() + s.slice(1)}
@@ -516,14 +572,12 @@ const SimulationHistoryView: React.FC = () => {
 // ─── Practice History View ─────────────────────────────────────────────────────
 
 const PracticeHistoryView: React.FC = () => {
-  const [history] = useState<PracticeAttempt[]>(() => {
-    try {
-      const data = JSON.parse(localStorage.getItem('practiceHistory') || '[]')
-      return Array.isArray(data) ? [...data].reverse() : []
-    } catch {
-      return []
-    }
-  })
+  const [history, setHistory] = useState<PracticeAttempt[]>([])
+
+  React.useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('practiceHistory') || '[]')
+    setHistory(data.reverse())
+  }, [])
 
   if (history.length === 0) {
     return (
@@ -617,10 +671,10 @@ export const History: React.FC = () => {
       <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-1.5 w-fit">
         <button
           onClick={() => setTab('simulation')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all cursor-pointer ${
             tab === 'simulation'
-              ? 'bg-indigo-600 text-slate-900 dark:text-white shadow'
-              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-100 dark:bg-slate-800'
+              ? 'bg-indigo-600 text-white shadow'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800'
           }`}
         >
           <HistoryIcon className="w-4 h-4" />
@@ -628,10 +682,10 @@ export const History: React.FC = () => {
         </button>
         <button
           onClick={() => setTab('practice')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all cursor-pointer ${
             tab === 'practice'
-              ? 'bg-indigo-600 text-slate-900 dark:text-white shadow'
-              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-100 dark:bg-slate-800'
+              ? 'bg-indigo-600 text-white shadow'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800'
           }`}
         >
           <BrainCircuit className="w-4 h-4" />

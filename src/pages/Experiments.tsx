@@ -203,13 +203,13 @@ export const Experiments: React.FC = () => {
 
       {/* Success flash banner */}
       {lastRunId && lastRunTitle && (
-        <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-emerald-100 dark:bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 text-sm">
+        <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-emerald-100 dark:bg-emerald-500/10 border border-emerald-500/25 text-emerald-800 dark:text-emerald-300 text-sm">
           <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
           <div className="flex-1 min-w-0">
             <span className="font-semibold">{lastRunTitle}</span>
-            <span className="text-emerald-600 dark:text-emerald-400/80"> ran successfully. </span>
+            <span className="text-emerald-700 dark:text-emerald-400/80"> ran successfully. </span>
             <button
-              className="underline underline-offset-2 hover:text-slate-900 dark:hover:text-slate-900 dark:text-white transition-colors"
+              className="underline underline-offset-2 hover:text-emerald-950 dark:hover:text-white transition-colors cursor-pointer"
               onClick={() => navigate('/simulator')}
             >
               View in Simulator →
@@ -217,7 +217,7 @@ export const Experiments: React.FC = () => {
           </div>
           <button
             onClick={() => { setLastRunId(null); setLastRunTitle(null) }}
-            className="text-emerald-600 dark:text-emerald-400/60 hover:text-emerald-300 transition-colors text-xs ml-auto shrink-0"
+            className="text-emerald-700 dark:text-emerald-400/60 hover:text-emerald-950 dark:hover:text-emerald-300 transition-colors text-xs ml-auto shrink-0 cursor-pointer"
           >
             ✕
           </button>

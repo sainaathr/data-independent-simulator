@@ -86,9 +86,9 @@ export default function QuizEngine({ title, questions, type, onComplete, onRetry
           </div>
 
           {topicsToReview.size > 0 && (
-            <div className="text-left bg-slate-50/50 dark:bg-slate-900/50 p-6 rounded-xl border border-slate-300 dark:border-slate-700 mb-8">
-              <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-3">Topics to Review</h3>
-              <ul className="list-disc list-inside text-rose-300 space-y-1">
+            <div className="text-left bg-rose-50/70 dark:bg-rose-950/20 p-6 rounded-xl border border-rose-200 dark:border-rose-900/50 mb-8">
+              <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-3">Topics to Review</h3>
+              <ul className="list-disc list-inside text-rose-700 dark:text-rose-300 space-y-1">
                 {Array.from(topicsToReview).map(topic => (
                   <li key={topic}>{topic}</li>
                 ))}
@@ -97,16 +97,16 @@ export default function QuizEngine({ title, questions, type, onComplete, onRetry
           )}
 
           <div className="flex flex-wrap justify-center gap-4">
-            <button onClick={onRetry} className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-slate-900 dark:text-white font-medium transition-colors">
+            <button onClick={onRetry} className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition-colors shadow-sm cursor-pointer">
               Retry Quiz
             </button>
-            <button onClick={onChangeSettings} className="px-6 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-600 text-slate-900 dark:text-white font-medium transition-colors">
+            <button onClick={onChangeSettings} className="px-6 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-100 font-medium transition-colors cursor-pointer">
               Change Settings
             </button>
-            <button onClick={() => navigate('/concepts')} className="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-slate-900 dark:text-white font-medium transition-colors">
+            <button onClick={() => navigate('/learn')} className="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium transition-colors shadow-sm cursor-pointer">
               Learn Concepts
             </button>
-            <button onClick={() => navigate('/simulator')} className="px-6 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-slate-900 dark:text-white font-medium transition-colors">
+            <button onClick={() => navigate('/simulator')} className="px-6 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-medium transition-colors shadow-sm cursor-pointer">
               Open Simulator
             </button>
           </div>
@@ -153,13 +153,13 @@ export default function QuizEngine({ title, questions, type, onComplete, onRetry
             
             if (!isRevealed) {
               btnClass += isSelected 
-                ? "border-indigo-500 bg-indigo-100 dark:bg-indigo-500/10 text-indigo-100" 
-                : "border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 hover:border-slate-500 hover:bg-slate-200 dark:hover:bg-slate-100 dark:bg-slate-800 cursor-pointer"
+                ? "border-indigo-500 bg-indigo-100 dark:bg-indigo-500/20 text-indigo-900 dark:text-indigo-100 font-medium" 
+                : "border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer"
             } else {
               if (isCorrectOption) {
-                btnClass += "border-emerald-500 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-100"
+                btnClass += "border-emerald-500 bg-emerald-100 dark:bg-emerald-500/20 text-emerald-900 dark:text-emerald-100 font-semibold"
               } else if (isSelected && !isCorrectOption) {
-                btnClass += "border-rose-500 bg-rose-500/10 text-rose-100"
+                btnClass += "border-rose-500 bg-rose-100 dark:bg-rose-500/20 text-rose-900 dark:text-rose-100"
               } else {
                 btnClass += "border-slate-300 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-900/30 text-slate-500 opacity-50"
               }
@@ -174,11 +174,11 @@ export default function QuizEngine({ title, questions, type, onComplete, onRetry
               >
                 <div className="flex items-start gap-3">
                   <div className={`shrink-0 w-6 h-6 rounded-full border flex items-center justify-center text-xs font-bold
-                    ${!isRevealed && isSelected ? 'border-indigo-500 text-indigo-600 dark:text-indigo-400' : ''}
-                    ${!isRevealed && !isSelected ? 'border-slate-400 dark:border-slate-600 text-slate-500' : ''}
-                    ${isRevealed && isCorrectOption ? 'border-emerald-500 text-emerald-600 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-500/10' : ''}
-                    ${isRevealed && isSelected && !isCorrectOption ? 'border-rose-500 text-rose-600 dark:text-rose-400 bg-rose-500/10' : ''}
-                    ${isRevealed && !isSelected && !isCorrectOption ? 'border-slate-300 dark:border-slate-700 text-slate-600' : ''}
+                    ${!isRevealed && isSelected ? 'border-indigo-600 bg-indigo-200 dark:bg-indigo-600 text-indigo-900 dark:text-white' : ''}
+                    ${!isRevealed && !isSelected ? 'border-slate-400 dark:border-slate-600 text-slate-500 dark:text-slate-400' : ''}
+                    ${isRevealed && isCorrectOption ? 'border-emerald-600 text-white bg-emerald-600' : ''}
+                    ${isRevealed && isSelected && !isCorrectOption ? 'border-rose-600 text-white bg-rose-600' : ''}
+                    ${isRevealed && !isSelected && !isCorrectOption ? 'border-slate-300 dark:border-slate-700 text-slate-500' : ''}
                   `}>
                     {['A', 'B', 'C', 'D'][idx]}
                   </div>
@@ -194,26 +194,26 @@ export default function QuizEngine({ title, questions, type, onComplete, onRetry
         <button
           disabled={selectedOption === null}
           onClick={handleReveal}
-          className="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-200 dark:bg-slate-700 disabled:text-slate-500 text-slate-900 dark:text-white font-medium transition-colors"
+          className="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-300 dark:disabled:bg-slate-700 disabled:text-slate-500 text-white font-bold transition-colors cursor-pointer disabled:cursor-not-allowed shadow-sm"
         >
           Reveal Answer
         </button>
       ) : (
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-300 space-y-4">
-          <div className={`p-6 rounded-2xl border ${selectedOption === correctIndex ? 'bg-emerald-900/20 border-emerald-500/30' : 'bg-rose-900/20 border-rose-500/30'}`}>
+          <div className={`p-6 rounded-2xl border ${selectedOption === correctIndex ? 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-300 dark:border-emerald-500/30' : 'bg-rose-50 dark:bg-rose-950/30 border-rose-300 dark:border-rose-500/30'}`}>
             <div className="flex items-start gap-4">
               <div className="text-3xl mt-1">
                 {selectedOption === correctIndex ? '✨' : '💪'}
               </div>
               <div>
-                <h4 className={`text-lg font-bold mb-2 ${selectedOption === correctIndex ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`}>
+                <h4 className={`text-lg font-bold mb-2 ${selectedOption === correctIndex ? 'text-emerald-700 dark:text-emerald-300' : 'text-rose-700 dark:text-rose-300'}`}>
                   {selectedOption === correctIndex ? 'Very well done! You got the right answer.' : 'You still need to ace this topic — keep going!'}
                 </h4>
-                <div className="text-slate-700 dark:text-slate-300 mb-2">
-                  <span className="font-semibold text-slate-800 dark:text-slate-200">Correct Answer:</span> {question.correctAnswer}. {question.options[correctIndex]}
+                <div className="text-slate-800 dark:text-slate-200 mb-2">
+                  <span className="font-semibold text-slate-900 dark:text-slate-100">Correct Answer:</span> {question.correctAnswer}. {question.options[correctIndex]}
                 </div>
-                <div className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                  <span className="font-semibold text-slate-700 dark:text-slate-300">Explanation:</span> {question.explanation}
+                <div className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                  <span className="font-semibold text-slate-900 dark:text-slate-100">Explanation:</span> {question.explanation}
                 </div>
               </div>
             </div>
@@ -221,7 +221,7 @@ export default function QuizEngine({ title, questions, type, onComplete, onRetry
           
           <button
             onClick={handleNext}
-            className="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-slate-900 dark:text-white font-bold transition-colors"
+            className="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold transition-colors cursor-pointer shadow-sm"
           >
             {currentIndex < total - 1 ? 'Next Question' : 'Finish Quiz'}
           </button>

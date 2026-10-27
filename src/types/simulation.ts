@@ -72,6 +72,8 @@ export interface SimulationResult {
   whyPoints: string[]
   timestamp: number
   diff?: SchemaDiff
+  processingSteps?: string[]
+  intermediateState?: { step: string; detail: string }[]
 }
 
 export interface PreviousSchemas {

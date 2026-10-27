@@ -86,8 +86,8 @@ export const Dashboard: React.FC = () => {
     {
       level: 'EXTERNAL LEVEL',
       role: 'User Views & Interfaces',
-      color: 'border-sky-500/40 bg-sky-950/20',
-      accent: 'text-sky-400',
+      color: 'border-sky-300 dark:border-sky-500/40 bg-sky-50 dark:bg-sky-950/20',
+      accent: 'text-sky-600 dark:text-sky-400',
       icon: Monitor,
       items: 'User views, query outputs, external application schemas, tailored perspectives',
       independenceType: 'Logical Data Independence separates External from Conceptual',
@@ -96,7 +96,7 @@ export const Dashboard: React.FC = () => {
     {
       level: 'CONCEPTUAL / LOGICAL LEVEL',
       role: 'Community Database View',
-      color: 'border-indigo-500/40 bg-indigo-950/20',
+      color: 'border-indigo-300 dark:border-indigo-500/40 bg-indigo-50 dark:bg-indigo-950/20',
       accent: 'text-indigo-600 dark:text-indigo-400',
       icon: Table,
       items: 'Tables, relations, entities, attributes, primary/foreign keys, business constraints',
@@ -106,7 +106,7 @@ export const Dashboard: React.FC = () => {
     {
       level: 'INTERNAL / PHYSICAL LEVEL',
       role: 'Storage Architecture',
-      color: 'border-emerald-500/40 bg-emerald-950/20',
+      color: 'border-emerald-300 dark:border-emerald-500/40 bg-emerald-50 dark:bg-emerald-950/20',
       accent: 'text-emerald-600 dark:text-emerald-400',
       icon: Server,
       items: 'Files, data pages, B-tree indexes, record ordering, block allocations, hashing',
@@ -149,13 +149,13 @@ export const Dashboard: React.FC = () => {
       )}
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-800 bg-gradient-to-br from-slate-900 via-slate-900/90 to-indigo-950/30 p-8 sm:p-10 lg:p-12 shadow-2xl">
+      <section className="relative overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-800 bg-gradient-to-br from-indigo-50/80 via-white to-sky-50/60 dark:from-slate-900 dark:via-slate-900/90 dark:to-indigo-950/30 p-8 sm:p-10 lg:p-12 shadow-xl dark:shadow-2xl">
         {/* Glow decoration */}
-        <div className="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-indigo-100 dark:bg-indigo-500/10 blur-3xl pointer-events-none" />
-        <div className="absolute -left-16 -bottom-16 w-80 h-80 rounded-full bg-blue-100 dark:bg-blue-500/10 blur-3xl pointer-events-none" />
+        <div className="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-indigo-200/40 dark:bg-indigo-500/10 blur-3xl pointer-events-none" />
+        <div className="absolute -left-16 -bottom-16 w-80 h-80 rounded-full bg-blue-200/40 dark:bg-blue-500/10 blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-3xl space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-500/10 border border-indigo-500/25 text-indigo-300 text-xs font-semibold tracking-wider uppercase">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-500/10 border border-indigo-300 dark:border-indigo-500/25 text-indigo-700 dark:text-indigo-300 text-xs font-semibold tracking-wider uppercase">
             <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
             <span>ANSI / SPARC Three-Schema Framework</span>
           </div>
@@ -183,7 +183,7 @@ export const Dashboard: React.FC = () => {
               variant="secondary"
               size="lg"
               icon={<BookOpen className="w-4 h-4 text-slate-600 dark:text-slate-400" />}
-              onClick={() => navigate('/concepts')}
+              onClick={() => navigate('/learn')}
             >
               Learn Concepts
             </Button>
